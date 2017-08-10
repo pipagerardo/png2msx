@@ -1,0 +1,90 @@
+----------------------------------------------------------------------
+Proyecto: PNG2SPR
+Objetivo: Convertir imágenes PNG a formato sprite compatible con MSX
+----------------------------------------------------------------------
+Quiero hacer un proyecto png2spr que de forma similar a png2msx pero
+especializado en sprites. Esto si que tiene trabajillo y se puede
+alargar en el tiempo, posiblemente también debería incluir pletter al
+igual que png2msx.
+Debe soportar sprites de 8x8, 8x16, 16x8, 16x16, 16x32, 32x16, 32x32
+Debe soportar sprites de un color y de dos colores. Mas de dos colores
+no es práctico por la limitación de cuatro sprites por línea.
+Debe exportar los patrones de bits chr, y la tabla de atributos.
+	beta 1
+		Todo por hacer menos lo que sea común a msx2png
+----------------------------------------------------------------------
+
+Tamaños de Sprites (Dos modos):
+- Modo 8x8:
+	8x8	1 Sprite  8x8
+	8x16	2 Sprites 8x8 en vertical
+	16x8	2 Sprites 8x8 en horizontal
+- Modo 16x16:
+	16x16	1 Sprite  16x16
+	16x24	2 Sprites 16x16 solapados en vertical
+	24x16	2 Sprites 16x16 solapados en horizontal
+	16x32	2 Sprites 16x16 en vertical
+	32x16	2 Sprites 16x16 en horizontal
+
+Desplazamiento:
+Cuando el sprite está formado por dos sprites estos pueden
+estar desalineados o desplazados para dar sensación de ser
+más grandes:
+
+Número de Colores ( 1 o 2 en cada bloque de 8x8 ):
+Siempre el 0 Transparente de fondo y otro color para el sprite.
+Se pueden usar sprites de hasta dos colores a parte del transparente.
+Un sprite doble y con dos colores son cuatro sprites y sólo se
+pueden usar 32 como máximo.
+
+Mezclar Sprites de varios tamaños y desplazamientos:
+En una imagen PNG sólo puede haber sprites de un mismo tamaño y
+con el mismo desplazamiento, sólo el número de colores puede ser
+diferente.
+
+PNG2SPR debe convertir imágenes PNG en tablas de patrones y en algún
+tipo de estructura con la información de los sprites para que luego
+el programador trabaje con ellos en el MSX. Debido a la gran cantidad
+de opciones y combinaciones es un poco complejo.
+
+struct {
+	dw longitud	; El tamaño en bytes de la tabla de patrones
+	db chars	; Número de sprites de 8x8 o longitud / 8
+	un array con los colres de cada char
+	db modo		; 8x8, 8x16, 16x8, 16x16, etc
+	db numero	; Número de sprites de un color.
+}
+
+
+
+Tabla de Patrones: 2048KB
+2048KB / (8 * 1) = 256 sprites de 8x8
+2048KB / (8 * 4) =  64 sprites de 16x16 a un color
+		    32 sprites de 16x16 a dos colores
+
+16x16 = 8x8 0	8x8 2
+	8x8 1	8x8 3
+
+El tamaño típico de la imagen sería de 128x128 pixels
+16 x 16 Sprites de 8x8
+ 8 x 8  Sprites de 16x16
+
+Tabla de Atributos: 128 Bytes / 4 bytes = 32 Planos
+1 - Coordena Y
+2 - Coordena X
+3 - Número de CHR de 0 a 255 (Pero máximo 32 a la vez y 4 en la misma línea)
+4 - EarlyClock 4 bits | Color 4 bits
+	SI ( Bit 7 == 1 ) X -32
+
+Si un Sprite tiene Y = 208 se desactivan todos los sprites en planos superiores.
+Si un Sprite tiene Y = 209 se desactiva.
+
+Planos: 32 de 0 a 31, un Sprite por plano.
+
+A cada Sprite sólo le podemos dar un color, en verdad son 2 colores
+el 0 que es el color transparente este no lo puedes modificar
+y el propio color que le das al Sprite de 0 a 15 de nuestra paleta MSX.
+
+No podemos usar más de un color por Sprite pero si podemos poner un
+Sprite encima de otro Sprite para conseguir que nuestro Sprite tenga
+2 o más colores.

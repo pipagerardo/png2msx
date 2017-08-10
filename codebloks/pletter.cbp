@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="pletter" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="windows_esp">
+				<Option platforms="Windows;" />
+				<Option output="../bin/pletter_win_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_win_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-O3" />
+					<Add option="-DWINDOWS" />
+					<Add option="-DSPANISH" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="windows_eng">
+				<Option platforms="Windows;" />
+				<Option output="../bin/pletter_win_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_win_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-O3" />
+					<Add option="-DWINDOWS" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="linux_esp">
+				<Option platforms="Unix;" />
+				<Option output="../bin/pletter_linux_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_linux_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-O3" />
+					<Add option="-DLINUX" />
+					<Add option="-DSPANISH" />
+					<Add option="-DLANGUAGE_UTF8" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="linux_eng">
+				<Option platforms="Unix;" />
+				<Option output="../bin/pletter_linux_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_linux_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-O3" />
+					<Add option="-DLINUX" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-static-libstdc++" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="mac_esp">
+				<Option platforms="Mac;" />
+				<Option output="../bin/pletter_mac_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_mac_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-DAPPLE" />
+					<Add option="-DSPANISH" />
+					<Add option="-DLANGUAGE_UTF8" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+				</Target>
+			<Target title="mac_eng">
+				<Option platforms="Mac;" />
+				<Option output="../bin/pletter_mac_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/pletter_mac_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-DAPPLE" />
+					<Add option="-DPLETTER_MAIN" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+		</Compiler>
+		<Unit filename="../src/comun/cadena.cpp" />
+		<Unit filename="../src/comun/cadena.h" />
+		<Unit filename="../src/comun/funciones.cpp" />
+		<Unit filename="../src/comun/funciones.h" />
+		<Unit filename="../src/comun/pletter.cpp" />
+		<Unit filename="../src/comun/pletter.h" />
+		<Unit filename="../src/comun/pletter_iso.h" />
+		<Unit filename="../src/comun/pletter_utf8.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

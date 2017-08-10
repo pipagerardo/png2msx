@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lpng" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="windows">
+				<Option platforms="Windows;" />
+				<Option output="../lib/lpng_win" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/lpng_win" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add directory="../zlib-1.2.11" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="linux">
+				<Option platforms="Unix;" />
+				<Option output="../lib/lpng_linux" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/lpng_linux" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add directory="../zlib-1.2.11" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-static-libgcc" />
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="mac">
+				<Option platforms="Mac;" />
+				<Option output="../lib/lpng_mac" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="../obj/lpng_mac" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add directory="../zlib-1.2.11" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Unit filename="../lpng1628/png.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/png.h" />
+		<Unit filename="../lpng1628/pngconf.h" />
+		<Unit filename="../lpng1628/pngdebug.h" />
+		<Unit filename="../lpng1628/pngerror.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngget.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pnginfo.h" />
+		<Unit filename="../lpng1628/pnglibconf.h" />
+		<Unit filename="../lpng1628/pngmem.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngpread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngpriv.h" />
+		<Unit filename="../lpng1628/pngread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngrio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngrtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngrutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngset.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngstruct.h" />
+		<Unit filename="../lpng1628/pngtrans.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngwio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngwtran.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../lpng1628/pngwutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/adler32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/compress.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/crc32.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/crc32.h" />
+		<Unit filename="../zlib-1.2.11/deflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/deflate.h" />
+		<Unit filename="../zlib-1.2.11/gzclose.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/gzguts.h" />
+		<Unit filename="../zlib-1.2.11/gzlib.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/gzread.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/gzwrite.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/infback.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/inffast.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/inffast.h" />
+		<Unit filename="../zlib-1.2.11/inffixed.h" />
+		<Unit filename="../zlib-1.2.11/inflate.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/inflate.h" />
+		<Unit filename="../zlib-1.2.11/inftrees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/inftrees.h" />
+		<Unit filename="../zlib-1.2.11/trees.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/trees.h" />
+		<Unit filename="../zlib-1.2.11/uncompr.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/zconf.h" />
+		<Unit filename="../zlib-1.2.11/zlib.h" />
+		<Unit filename="../zlib-1.2.11/zutil.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="../zlib-1.2.11/zutil.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="png2msx" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="windows_esp">
+				<Option platforms="Windows;" />
+				<Option output="../bin/png2msx_win_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_win_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DWINDOWS" />
+					<Add option="-DSPANISH" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libgcc" />
+					<Add library="../lib/liblpng_win.a" />
+				</Linker>
+			</Target>
+			<Target title="windows_eng">
+				<Option platforms="Windows;" />
+				<Option output="../bin/png2msx_win_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_win_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DWINDOWS" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libgcc" />
+					<Add library="../lib/liblpng_win.a" />
+				</Linker>
+			</Target>
+			<Target title="linux_esp">
+				<Option platforms="Unix;" />
+				<Option output="../bin/png2msx_linux_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_linux_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DLINUX" />
+					<Add option="-DLANGUAGE_UTF8" />
+					<Add option="-DSPANISH" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libgcc" />
+					<Add library="../lib/liblpng_linux.a" />
+				</Linker>
+			</Target>
+			<Target title="linux_eng">
+				<Option platforms="Unix;" />
+				<Option output="../bin/png2msx_linux_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_linux_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DLINUX" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libgcc" />
+					<Add library="../lib/liblpng_linux.a" />
+				</Linker>
+			</Target>
+			<Target title="mac_esp">
+				<Option platforms="Mac;" />
+				<Option output="../bin/png2msx_mac_esp" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_mac_esp" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DAPPLE" />
+					<Add option="-DLANGUAGE_UTF8" />
+					<Add option="-DSPANISH" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add library="../lib/liblpng_mac.a" />
+				</Linker>
+			</Target>
+			<Target title="mac_eng">
+				<Option platforms="Mac;" />
+				<Option output="../bin/png2msx_mac_eng" prefix_auto="1" extension_auto="1" />
+				<Option object_output="../obj/png2msx_mac_eng" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O3" />
+					<Add option="-Wextra" />
+					<Add option="-Wall" />
+					<Add option="-DAPPLE" />
+					<Add directory="../lpng1628" />
+				</Compiler>
+				<Linker>
+					<Add library="../lib/liblpng_mac.a" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="../src/comun/archivo.cpp" />
+		<Unit filename="../src/comun/archivo.h" />
+		<Unit filename="../src/comun/cadena.cpp" />
+		<Unit filename="../src/comun/cadena.h" />
+		<Unit filename="../src/comun/color.cpp" />
+		<Unit filename="../src/comun/color.h" />
+		<Unit filename="../src/comun/endian.h" />
+		<Unit filename="../src/comun/formato_png.cpp" />
+		<Unit filename="../src/comun/formato_png.h" />
+		<Unit filename="../src/comun/funciones.cpp" />
+		<Unit filename="../src/comun/funciones.h" />
+		<Unit filename="../src/comun/lista.h" />
+		<Unit filename="../src/comun/matematicas.cpp" />
+		<Unit filename="../src/comun/matematicas.h" />
+		<Unit filename="../src/comun/pletter.cpp" />
+		<Unit filename="../src/comun/pletter.h" />
+		<Unit filename="../src/comun/pletter_iso.h" />
+		<Unit filename="../src/comun/pletter_utf8.h" />
+		<Unit filename="../src/comun/tabla.h" />
+		<Unit filename="../src/png2msx.cpp" />
+		<Unit filename="../src/png2msx_iso.h" />
+		<Unit filename="../src/png2msx_utf8.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

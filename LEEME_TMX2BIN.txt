@@ -1,0 +1,11 @@
+----------------------------------------------------------------------
+Proyecto: TMX2BIN
+Objetivo: Convertir mapas TMX (Tiled) a formato binario para el MSX
+----------------------------------------------------------------------
+Quiero hacer un proyecto tmx2bin que extraiga de un mapa TMX hecho
+con tiled los mapas o pantallas en formato binario, posiblemente
+también debería incluir pletter al igual que png2msx. El lector de
+archivos TMX está echo, así que no debería ser un proyecto largo.
+	beta 1
+		Todo por hacer menos el lector de archivos TMX
+----------------------------------------------------------------------

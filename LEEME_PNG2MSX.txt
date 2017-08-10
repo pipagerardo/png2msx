@@ -1,0 +1,273 @@
+----------------------------------------------------------------------
+Proyecto: PNG2MSX
+Objetivo: Convertir imágenes PNG a formato compatible con MSX SCREEN 2
+----------------------------------------------------------------------
+PNG2MSX Es un programa de línea de comandos que convierte las imágenes
+PNG a la paleta de color del MSX. También soporta la colisión de color
+adaptando la imagen a las limitaciones del chip de video de los MSX1.
+----------------------------------------------------------------------
+Listado completo de comandos:
+----------------------------------------------------------------------
+png2msx.exe entrada.png [nombre_salida] [-opciones]
+	-x[Número]	Posición de x en pixels [ 0 ~ 2048 ]
+	-y[Número]	Posición de y en pixels [ 0 ~ 2048 ]
+	-w[Número]	Ancho en pixels [ 0 ~ 2048 ]
+	-h[Número]	Alto  en pixels [ 0 ~ 2048 ]
+			"w*h" debe ser igual o menor que 49152
+			Si "w" no es 256 la imagen no estará alineada
+	-g[Número]	Umbral de Gris [ 0 ~ 255 ]
+  	-b[Número]	Contraste [ -255 ~ 255 ]:
+ 			-b	contraste automático
+ 			-b16	Blancos más blancos y viceversa
+ 			-b-8	Blancos más oscuros y viceversa
+	-c		Filtro de Colisión de Color (8 pixels)
+	-e		Pasa error conversión al siguiente pixel
+ 	-z		Cambia el color 0 por el 1
+ 	-n		Cambia el color 1 por el 0
+	-k[Número]	Color de fondo de 0 a 15
+	-f[Número]	Busca baldosas parecidas de 1 a 16 bits
+			Recomiendo valores de 2 a 6
+	-o[Número]	Quita las baldosas repetidas en VRAM:
+		 	-o0 Baldosas repetidas 1 banco  VRAM 1-1-1
+ 			-o1 Baldosas repetidas 2 bancos VRAM 1-2-1
+ 			-o2 Baldosas repetidas 2 bancos VRAM 1-1-3
+			-o3 Baldosas repetidas 3 bancos VRAM 1-2-3
+			-o4 Baldosas repetidas sin restricciones
+	-p		Archivo PNG de salida
+	-a		Archivo PNG de salida con canal Alfa
+	-r		Archivo en bruto para ASM: CHR, CLS y NAM
+ 	-t		Archivo en bruto Pletter5 sin longitud
+	-l		Archivo en bruto Pletter5 con longitud
+	-s		Archivo SC2 para BLOAD"ARCHIVO.SC2",S
+	-m		Archivo BASIC ASCII que carga SC2
+
+Ejemplo:
+png2msx.exe entrada.png salida-x8 -y32 -w256 -h192 -c -p
+----------------------------------------------------------------------
+Los archivos de salida son los siguientes:
+
+-p			PNG sin alfa
+-a			PNG con alfa
+  archivo.png		La imagen en formato PNG con o sin alfa.
+
+-r
+  archivo.chr		La tabla de patrones en bruto
+  archivo.cls		La tabla de colores  en bruto
+  archivo.nam		La tabla de nombres   en bruto
+
+-t			Pletter5 sin longitud
+-l			Pletter5 con longitud
+  archivo.chr.plet5	La tabla de patrones comprimida pletter
+  archivo.cls.plet5	La tabla de colores  comprimida pletter
+  archivo.nam.plet5	La tabla de nombres  comprimida pletter
+
+-s
+  archivo.sc2		La imagen en formato SC2
+
+-m
+  archivo.asc		Programa en BASIC ASCII para cargar SC2
+----------------------------------------------------------------------
+Con las opciones ( -x -y -w -h ) se puede definir  un área  dentro  de
+la imagen de entrada PNG. A veces cambiando  -x uno  o dos  pixels  el
+resultado final puede cambiar enormemente por culpa  de  la limitación
+del MSX de sólo poder tener dos colores cada 8 pixels.
+De todos modos recomiendo que el ancho -w sea siempre 256 y el alto -h
+siempre múltiplos de 8 pixels. Si el ancho no es 256 pixel  la  imagen
+deberá ser tratada de forma especial o se verá mal al  volcarla  a  la
+memoria de video del MSX, esto lo dejo en manos  del  programador  que
+supongo sabe lo que se hace.
+----------------------------------------------------------------------
+La opción -g es el umbral de gris, para entender este concepto hay que
+aclarar que el color ( 128, 127, 127 ) es ROJO,  pero el ojo humano no
+lo puede distinguir y lo ve como gris. Para  ser  gris  puro  las tres
+componentes deben ser iguales, el umbral  de  gris  es  la  diferencia
+máxima que puede haber entre dos  componentes  para  definir  el color
+como gris al ojo humano.  El  valor  por  defecto  es  20,  cantidades
+superiores  pueden  ser  detectadas por el ojo humano,  hasta  100  no 
+afecta  a la  detección  de los  colores  de la paleta de MSX, valores
+superiores interpretarán la imagen como si fuese en escala de grises.
+----------------------------------------------------------------------
+La opción -b cambia  el  contraste  de  la  imagen,  más  adelante  se 
+explicará con más detalle. Puede ser positivo, negativo y automático.
+----------------------------------------------------------------------
+La opción -c activa el Filtro de Colisión de Color,  el  MSX  sólo  es 
+capaz de mostrar dos colores por cada 8 pixels. Este filtro  convierte 
+una línea de 8 pixels a dos colores. Es la parte más complicada y para
+optimizar los resultados hay que jugar con las opciones -x  y  -b para
+conseguir el mejor resultado.
+----------------------------------------------------------------------
+La opción -e es un filtro que pasa el error de conversión de color  al
+siguiente pixel, crea  patrones de dos  colores  para  compensar  este
+error entre la luminancia real y la convertida a la paleta del MSX.
+----------------------------------------------------------------------
+La opción -z cambia todos los colores transparentes de la  imagen  por
+el color negro, por lo cual la salida no contendrá transparencia.
+----------------------------------------------------------------------
+La opción -n cambia todos los colores negros de la imagen por el color
+transparente.
+----------------------------------------------------------------------
+La opción -k indica que color tiene preferencia para ser el  color  de
+fondo, corresponde a los índices de la paleta MSX1 de 0 a 15. Si no se
+indica nada el color más repetido y con el índice  más  alto  será  el
+color de fondo.
+----------------------------------------------------------------------
+La opción  -f[Número]  busca  baldosas  que  sean  casi  iguales  para 
+igualarlas "No borra ninguna baldosa,  solo  las  hacer  iguales".  El
+criterio  se basa  en la  cantidad de  bits  diferentes  entre las dos 
+baldosas. Cuanto más bits diferentes  más baldosas  se igualaran  y la
+imagen sufrirá distorsiones. El valor máximo  es  16 bits  diferentes,
+pero lo apropiado ronda entre 2 y 6 bits como máximo.
+----------------------------------------------------------------------
+La opción -o[Número] borra las baldosas repetidas con la intención  de
+reducir la imagen a uno, dos o tres bancos de VRAM. Para entender esta
+opción hay que tener conocimientos avanzados de cómo funciona el  chip
+de video de los MSX1. Muy resumido trabaja  con  tres  bancos  de  256
+baldosas cada uno, así que esta opción intenta si se puede ajustar  la
+imagen a los bancos de  VRAM  especificados.  Por supuesto  que  puede
+darse el caso de no ser posible y fallar. Esta  opción  sólo  es  apta 
+para expertos.
+----------------------------------------------------------------------
+La opción -p activa la salida de un archivo en formato  PNG  para  ver
+el resultado sin necesidad de probarlo en un MSX.
+----------------------------------------------------------------------
+La opción -a es igual que la opción -p sólo  que  el  archivo  PNG  de
+salida contiene transparencia, en concreto el color 0 es transparente.
+----------------------------------------------------------------------
+La opción -r exporta tres archivos en bruto para usarse en ensamblador
+	archivo.chr	La tabla de patrones en bruto 6144 bytes
+	archivo.cls	La tabla de colores  en bruto 6144 bytes
+ 	archivo.nam	La tabla de nombres  en bruto 768 bytes
+
+MAPA DE LA VRAM EN SCREEN 2 ( 256 x 192 pixel a 16 colores)
+
+  0000H - 07FFH	--> Tabla de patrones 1 -> 256 * 8 = 2048
+  0800H - 0FFFH	--> Tabla de patrones 2 -> 256 * 8 = 2048
+  1000H - 17FFH	--> Tabla de patrones 3 -> 256 * 8 = 2048
+  de 0000H a 17FFH = 1800H -> 6144 bytes 
+
+  2000H - 27FFH	--> Tabla de colores 1 -> 256 * 8 = 2048
+  2800H - 2FFFH	--> Tabla de colores 2 -> 256 * 8 = 2048
+  3000H - 37FFH	--> Tabla de colores 3 -> 256 * 8 = 2048
+  de 2000H a 37FFH = 1800H -> 6144 bytes
+
+  1800H - 18FFH	--> Tabla de nombres 1 -> 256
+  1900H - 19FFH	--> Tabla de nombres 2 -> 256
+  1A00H - 1AFFH	--> Tabla de nombres 3 -> 256
+  de 1800H a 1AFFH = 300H -> 768 bytes
+
+----------------------------------------------------------------------
+La opción -t comprime con pletter los archivos de salida  chr,  clr  y
+nam, no incluye dos bytes con la longitud total del archivo.
+----------------------------------------------------------------------
+La opción -l comprime con pletter los archivos de salida  chr,  clr  y
+nam, si incluye dos bytes con la longitud total del archivo.
+----------------------------------------------------------------------
+La opción -s saca un archivo en formato SC2 para cargar desde el BASIC
+Ejemplo para cargar la imagen SC2:
+
+Activamos el SCREEN 2 con fondo transparente:
+	10 COLOR 15,0,0:SCREEN 2
+La opción que corresponda según los bancos de VRAM:
+ 	20 VDP(3)=&H9F:VDP(4)=&H00	// -o0 VRAM 111
+	20 VDP(3)=&HBF:VDP(4)=&H01	// -o1 VRAM 121
+	20 VDP(3)=&HDF:VDP(4)=&H02	// -o2 VRAM 113
+ 	20 VDP(3)=&HFF:VDP(4)=&H03	// -o3 VRAM 123
+Cargamos la imagen a VRAM:
+	20 BLOAD"ARCHIVO.SC2",S
+Esperamos a pulsar una tecla:
+	30 A$=INKEY$:IF A$="" GOTO 30
+
+"Si el ancho de la imagen no es 256 pixels la imagen no se verá bien."
+----------------------------------------------------------------------
+La opción -m saca un pequeño programa en BASIC ASCII que carga el SC2
+así que es complementaria de la opción -s. Ahora en vez de tener  que
+teclear todo el programa sólo hay que hacer:
+	LOAD"ARCHIVO.ASC",R
+----------------------------------------------------------------------
+
+De las siguientes opciones sólo se debe elegir  una  de cada dos,  por
+ejemplo el archivo PNG o tiene canal alfa o  no  lo  tiene,  no  tiene
+sentido activar las dos opciones, esto no es física cuántica:
+	-p o -a		Archivo PNG
+ 	-z o -n		Cambio del color 
+ 	-t o -l		Salida Pletter
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+La paleta que usa MSX2PNG es la siguiente:
+----------------------------------------------------------------------
+Índice	 R    G    B    A	Nombre
+---------------------------------------------
+00	000, 000, 000, 000	Transparente
+01	000, 000, 000, 255	Negro
+02	033, 200, 066, 255	Verde Medio
+03	094, 220, 120, 255	Verde Claro
+04	084, 085, 237, 255	Azul Oscuro
+05	125, 118, 252, 255	Azul Claro
+06	212, 082, 077, 255	Rojo Oscuro
+07	066, 235, 245, 255	Cianógeno
+08	252, 085, 084, 255	Rojo Medio
+09	255, 121, 120, 255	Rojo Claro
+10	212, 193, 084, 255	Amarillo Oscuro
+11	230, 206, 128, 255	Amarillo Claro
+12	033, 176, 059, 255	Verde Oscuro
+13	201, 091, 186, 255	Magenta
+14	204, 204, 204, 255	Gris
+15	255, 255, 255, 255	Blanco
+----------------------------------------------------------------------
+El transparente y el negro tiene las mismas componentes  RGB,  por  lo
+cual si utiliza un PNG con paleta de colores, es  muy  importante  que
+los dos primeros sean negros. Repito, si usas  un  PNG con  paleta  de
+color, los dos primeros colores de  la  paleta  deben  de  ser  negros
+(0,0,0). De este modo, todos los colores de la  paleta  con  índice  0
+serán interpretados como transparentes, y los de índice 1 serán negros
+para el MSX. En gimp se puede añadir un canal alfa  a  una  imagen  de
+paleta de colores, y por lo general usa el índice 0 como transparente,
+esto es muy buena idea para no equivocarse y usar el 0 como negro.
+----------------------------------------------------------------------
+Si usa un archivo PNG en formato RGB, PNG2MSX no creará  ningún  color
+transparente para el MSX, puesto que el negro (0,0,0) es  negro  y  no
+transparente.
+(En versiones futuras es posible que implemente el  uso  de  un  color
+clave para que PNG2MSX lo interprete como transparente)
+----------------------------------------------------------------------
+Si desea usar la transparencia, puede trabajar con un  archivo PNG  en
+formato RGBA, donde cualquier color con un Alfa inferior  a  128  será
+interpretado como transparente para el MSX.
+----------------------------------------------------------------------
+De todos modos, a mi parecer la mejor opción siempre es  trabajar  con
+una paleta de 16 colores con los dos primeros en negro.  Las  imágenes
+RGB pueden convertirse a paleta de color con MSX2PNG y  a continuación
+trabajar con la versión de 16 colores.
+----------------------------------------------------------------------
+Sobre la conversión de imágenes RGB/RGBA a MSX:
+----------------------------------------------------------------------
+El programa PNG2MSX tiene dos funciones importantísimas, la primera es
+la opción -c que activa el filtro de colisión de colores, os  refresco
+que el MSX sólo puede tener dos colores cada  ocho  pixels  de  ancho.
+Esto tiene gravísimas consecuencias, primero las  imágenes  deben  ser
+múltiplos de 8, y segundo, no  todas  las  combinaciones  posibles  de
+pixels son posibles.
+----------------------------------------------------------------------
+A veces la conversión de una imagen RGB/RGBA a MSX puede no presentar
+un bonito aspecto, para ello está la opción  -bNúmero  que  cambia  el 
+contraste de la imagen haciendo  que  los  colores  oscuros  sean  más 
+oscuros y los claros más claros en caso de ser un valor  positivo.  Si
+se especifica un valor negativo los colores oscuros serán más claros y
+los claros más oscuros. Parece  una  tontería,  pero  jugando  con  el 
+contraste se pude conseguir una mejora muy significativa del resultado
+final.
+----------------------------------------------------------------------
+Si la imagen RGB/RGBA ya está adaptada a la paleta de color  del  MSX,
+no use el contraste porque la dañará, el contraste sólo es  útil  para
+imágenes que no están adaptadas a la paleta de color  del MSX  y  que
+por sus  tonos  de  colores  no  pueden  ser  convertidas  con  buenos 
+resultados.
+----------------------------------------------------------------------
+También hay un contraste automático que se activa con -b en  la  línea
+de comandos. Este calcula la luminancia máxima y  mínima  de  toda  la
+imagen  pixel  por  pixel,   lo  cual  evidentemente   ralentizara  la
+conversión.  Luego  con  estos  valores  determina  el   contraste más 
+efectivo, aunque puede que el resultado no sea de tu  agrado,  siempre
+puedes establecerlo manualmente.
+----------------------------------------------------------------------

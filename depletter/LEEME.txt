@@ -1,0 +1,18 @@
+En la carpeta sjasmpg está la implementación de depletter y depletter vram
+en el mismo archivo llamado depletter.asm, solo hay que usar las definiciones
+DEFINE USAR_PLETTER, DEFINE USAR_PRETTER_VRAM para activar o desactivar el 
+que queramos usar.
+El archivo unpack.asm es la versión original del autor y no tiene soporte para
+volcado directo a memoria.
+
+En la carpeta sjasm hay lo mismo que en la carpeta sjampg pero usando () en
+vez de [] para las indirecciones.
+
+En la carpeta asmsx estan los archivos depletter.asm y depletter_vram.asm
+para el compilador asmsx, aunque os recomiendo usar el fantástico compilador
+SjasmPG en vez del cascarrabias AsMSX.
+
+En la carpeta glass está la implementación para Glass Z80 de Santiago Ontañon.
+
+* Como podéis ver hay compiladores para dar y regalar.
+

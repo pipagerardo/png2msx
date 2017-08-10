@@ -1,0 +1,128 @@
+Listado en ASCII:
+Sin cabecera, empieza directamente:
+Comillas "	22
+Espacio		20
+Fin de línea 	0D 0A
+Acaba con 	0D 0A 1A
+
+
+LISTADO EN TOKENS:
+
+-------------------   -------------------   -------------------
+| >	  |    EE |   | ERR	|    E2 |   | PAINT   |    BF |
+| =	  |    EF |   | ERROR	|    A6 |   | PDL     | FF A4 |
+| <	  |    F0 |   | EXP	| FF 8B |   | PEEK    | FF 97 |
+| +	  |    F1 |   | FIELD	|    B1 |   | PLAY    |    C1 |
+| -	  |    F2 |   | FILES	|    B7 |   | POINT   |    ED |
+| *	  |    F3 |   | FIX	| FF A1 |   | POKE    |    98 |
+| /	  |    F4 |   | FN	|    DE |   | POS     | FF 91 |
+| ^	  |    F5 |   | FOR	|    82 |   | PRESET  |    C3 |
+| \	  |    FC |   | FPOS	| FF A7 |   | PRINT   |    91 |
+| ABS	  | FF 86 |   | FRE	| FF 8F |   | PSET    |    C2 |
+| AND	  |    F6 |   | GET	|    B2 |   | PUT     |    B3 |
+| ASC	  | FF 95 |   | GOSUB	|    8D |   | READ    |    87 |
+| ATN	  | FF 8E |   | GOTO	|    89 |   | REM     | 3A 8F |
+| ATTR$   |    E9 |   | HEX$	| FF 9B |   | RENUM   |    AA |
+| AUTO	  |    A9 |   | IF	|    8B |   | RESTORE |    8C |
+| BASE	  |    C9 |   | IMP	|    FA |   | RESUME  |    A7 |
+| BEEP	  |    C0 |   | INKEY$	|    EC |   | RETURN  |    8E |
+| BIN$	  | FF 9D |   | INP	| FF 90 |   | RIGHT$  | FF 82 |
+| BLOAD   |    CF |   | INPUT	|    85 |   | RND     | FF 88 |
+| BSAVE   |    D0 |   | INSTR	|    E5 |   | RSET    |    B9 |
+| CALL	  |    CA |   | INT	| FF 85 |   | RUN     |    8A |
+| CDBL	  | FF A0 |   | IPL	|    D5 |   | SAVE    |    BA |
+| CHR$	  | FF 96 |   | KEY	|    CC |   | SCREEN  |    C5 |
+| CINT	  | FF 9E |   | KILL	|    D4 |   | SET     |    D2 |
+| CIRCLE  |    BC |   | LEFT$	| FF 81 |   | SGN     | FF 84 |
+| CLEAR   |    92 |   | LEN	| FF 92 |   | SIN     | FF 89 |
+| CLOAD   |    9B |   | LET	|    88 |   | SOUND   |    C4 |
+| CLOSE   |    B4 |   | LFILES	|    BB |   | SPACE$  | FF 99 |
+| CLS	  |    9F |   | LINE	|    AF |   | SPC(    |    DF |
+| CMD	  |    D7 |   | LIST	|    93 |   | SPRITE  |    C7 |
+| COLOR   |    BD |   | LLIST	|    9E |   | SQR     | FF 87 |
+| CONT	  |    99 |   | LOAD	|    B5 |   | STEP    |    DC |
+| COPY	  |    D6 |   | LOC	| FF AC |   | STICK   | FF A2 |
+| COS	  | FF 8C |   | LOCATE	|    D8 |   | STOP    |    90 |
+| CSAVE   |    9A |   | LOF	| FF AD |   | STR$    | FF 93 |
+| CSNG	  | FF 9F |   | LOG	| FF 8A |   | STRIG   | FF A3 |
+| CSRLIN  |    E8 |   | LPOS	| FF 9C |   | STRING$ |    E3 |
+| CVD	  | FF AA |   | LPRINT	|    9D |   | SWAP    |    A4 |
+| CVI	  | FF A8 |   | LSET	|    B8 |   | TAB(    |    DB |
+| CVS	  | FF A9 |   | MAX	|    CD |   | TAN     | FF 8D |
+| DATA	  |    84 |   | MERGE	|    B6 |   | THEN    |    DA |
+| DEF	  |    97 |   | MID$	| FF 83 |   | TIME    |    CB |
+| DEFDBL  |    AE |   | MKD$	| FF B0 |   | TO      |    D9 |
+| DEFINT  |    AC |   | MKI$	| FF AE |   | TROFF   |    A3 |
+| DEFSNG  |    AD |   | MKS$	| FF AF |   | TRON    |    A2 |
+| DEFSTR  |    AB |   | MOD	|    FB |   | USING   |    E4 |
+| DELETE  |    A8 |   | MOTOR	|    CE |   | USR     |    DD |
+| DIM	  |    86 |   | NAME	|    D3 |   | VAL     | FF 94 |
+| DRAW	  |    BE |   | NEW	|    94 |   | VARPTR  |    E7 |
+| DSKF	  | FF A6 |   | NEXT	|    83 |   | VDP     |    C8 |
+| DSKI$   |    EA |   | NOT	|    E0 |   | VPEEK   | FF 98 |
+| DSKO$   |    D1 |   | OCT$	| FF 9A |   | VPOKE   |    C6 |
+| ELSE	  | 3A A1 |   | OFF	|    EB |   | WAIT    |    96 |
+| END	  |    81 |   | ON	|    95 |   | WIDTH   |    A0 |
+| EOF	  | FF AB |   | OPEN	|    B0 |   | XOR     |    F8 |
+| EQV	  |    F9 |   | OR	|    F7 |   -------------------
+| ERASE   |    A5 |   | OUT	|    9C |
+| ERL	  |    E1 |   | PAD	| FF A5 |
+-------------------   -------------------
+
+FF
+Lineas		DIRECCIÓN ABSOLUTA SIGUIENTE LÍNEA : NUMERO DE LÍNEA
+Fin de linea	00
+Comillas "	22
+Espacio		20
+Dos puntos :	3A
+fin de programa 0000
+
+FF
+direccion absoluta : 01 00
+BD 20 0F 0F 2C 11 2C 11 3A C5 20 13 00		COLOR 15,0,0:SCREEN 2
+C8 28 14 29 EF 0F FF 3A C8 28 15 29 EF 0F 03	VDP(3)=&HFF:VDP(4)&H3
+		  --			  --
+
+
+DATA		84
+
+   Figure 2.12	Numeral formats in text
+
+				----------------
+	    Octal number (&O)	| 0B | XX : XX |
+				----------------
+				----------------
+      Hexadecimal number (&H)	| 0C | XX : XX |
+				----------------
+
+				---------------- Absolute address of the
+      Line number (after RUN)	| 0D | XX : XX | destination line for the
+				---------------- branch instruction
+						 in memory.
+
+						 Destination line number
+				---------------- for the branch instruction.
+     Line number (before RUN)	| 0E | XX : XX | After RUN, identification
+				---------------- code is made 0DH and the
+						 line number is changed to
+						 the absoulte address.
+				-----------
+   Integer from 10 to 255 (%)	| 0F : XX |
+				-----------
+				------
+      Integer from 0 to 9 (%)	|    | 11 to 1A
+				------
+				----------------
+Integer from 256 to 32767 (%)	| 1C | XX : XX |
+				----------------
+				--------------------------
+    Single precision real (!)	| 1D | XX : XX : XX : XX |
+				--------------------------
+				--------------------------
+    Double precision real (#)	| 1F | XX : XX : XX : XX :
+				--------------------------
+				     : XX : XX : XX : XX |
+				     ---------------------
+				------------------
+		  Binary (&B)	| "&"| "B"| . . .  Characters of "0" or "1"
+				------------------ following "&B"

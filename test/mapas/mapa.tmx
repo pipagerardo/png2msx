@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="left-down" width="32" height="22" tilewidth="8" tileheight="8" nextobjectid="1">
+ <tileset firstgid="1" name="tiles_msx_256x56" tilewidth="8" tileheight="8" tilecount="256">
+  <image source="tiles_msx_256x64.png" width="256" height="64"/>
+ </tileset>
+ <layer name="Capa de Patrones 1" width="32" height="22">
+  <data encoding="base64" compression="zlib">
+   eJzF0kdOAzEYhuEJBFIQrOkoCZ2IsqEtgB0I9rQLgKgLEO0CIIUOot2Bjmh3gJvAGXhH8ohf1ng0UciwePTbnhl/tscxy7LiiCCmOP1QAKIqKyrE1TqCyI+IvcdF/av597Dv8Vyedz7O/xo3PvLdar7OfBRjIr9I27spewOb2Moxfw7zlvn+mb67wCWuXJ4NY0TUfNy/V7zhXYxlsOtSvdbzgU/t//u5f+WoQKU27mTK/BnMiirf/8K3lu/n/vWiD/2GfLkOr/xu9Ih8v/dvElOYdnmW0WxjR1T57jgmVLsZLSj2yP1ra1gX/QY0BpRta0eHqiF1/q1oCyi/E10o/af927llIr9J/f9c5z3AYRb7T2e5/3qtX4CEqnb/FneqfYRj1V7Bqsf+7f9fYsg8w7mW7+SmkFRV/+4eD6p9glPD/w9r+w+rWos6PONFy00KKa1dhWrUiLxHPFm/997Zf1o7Q6cWurQTHplyPQtYxBKWffTlHKZ59Qx9PJVDthc5/wAGMaQ918dNazX5AXLkTak=
+  </data>
+ </layer>
+</map>

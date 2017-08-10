@@ -1,5 +1,7 @@
 Herramientas para gráficos y datos en MSX
+
 E-Mail: pipagerardo@gmail.com Copyright 2017 PipaGerardo
+
 web del proyecto: https://sites.google.com/view/png2msx/
 
 El conjunto png2msx son herramientas para trabajar con gráficos y datos en MSX por línea de comandos, es multiplataforma Windows, Linux y Mac, además está disponible en Español e Inglés. Ha sido creado en C++ Estandar usando CodeBlocks.

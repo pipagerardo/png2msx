@@ -1,0 +1,1 @@
+Aquí se guardarán las librerías estáticas usadas.

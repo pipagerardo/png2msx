@@ -1,11 +1,11 @@
 // ----------------------------------------------------------------------------
-//  png2msx         beta 7
+//  png2msx         beta 8
 // --------
 //		Autor:		PipaGerardo
 //      E-Mail:		pipagerardo@gmail.com
 // ----------------------------------------------------------------------
 // Conversor de imágenes de PNG a MSX, por PipaGerardo.
-// Versión beta 6 ( 2017 )       pipagerardo@gmail.com
+// Versión beta 8 ( 2018 )       pipagerardo@gmail.com
 // png2msx.exe entrada.png [nombre_salida] [-opciones] \n" );
 // ----------------------------------------------------------------------
 // png2msx.exe entrada.png [nombre_salida] [-opciones]
@@ -259,6 +259,7 @@ bool damePatronColores( Color linea[8], Uint8& chr, Uint8& clr ) {
 	// Buscamos los dos colores:
 	// c1 = Tinta
 	// c2 = Fondo
+	// ( Tinta 4bits | Fondo 4bits )
 	Uint8 c2, c1 = linea[0].dameIndice();
 	for( register int i = 1; i < 8; ++i ) {
 		c2 = linea[i].dameIndice();
@@ -273,6 +274,7 @@ bool damePatronColores( Color linea[8], Uint8& chr, Uint8& clr ) {
             c2 = t;
         // Si el fondo no es el colo seleccionado:
         } else if ( c2 != numColorFondo ) {
+            /*
             // Contamos la cantidad de colores repetidos:
             Uint8 n2, n1; n2 = n1 = 0;
             for( register int i = 1; i < 8; ++i ) {
@@ -293,9 +295,17 @@ bool damePatronColores( Color linea[8], Uint8& chr, Uint8& clr ) {
                     c2 = t;
                 }
             }
+            */
+            // Ponemos de fondo el color más bajo:
+            if( c1 > c2 ) {
+                Uint8 t = c1;
+                c1 = c2;
+                c2 = t;
+            }
         }
     // PONEMOS DE FONDO EL COLOR MÁS REPETIDO:
     } else {
+        /*
         // Contamos la cantidad de colores repetidos:
         Uint8 n2, n1; n2 = n1 = 0;
         for( register int i = 1; i < 8; ++i ) {
@@ -315,6 +325,13 @@ bool damePatronColores( Color linea[8], Uint8& chr, Uint8& clr ) {
                 c1 = c2;
                 c2 = t;
             }
+        }
+        */
+        // Ponemos de fondo el color más bajo:
+        if( c1 > c2 ) {
+            Uint8 t = c1;
+            c1 = c2;
+            c2 = t;
         }
     }
 

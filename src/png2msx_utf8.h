@@ -4,7 +4,7 @@
 #ifdef SPANISH
 
 #define TXT_PNG2MSX_Conversor   "    Conversor de imágenes de PNG a MSX, por PipaGerardo.\n"
-#define TXT_PNG2MSX_Version     "    Versión beta 7 ( 2017 )       pipagerardo@gmail.com\n"
+#define TXT_PNG2MSX_Version     "    Versión beta 8 ( 2018 )       pipagerardo@gmail.com\n"
 #ifdef WINDOWS
 #define TXT_PNG2MSX_Opciones    "png2msx.exe entrada.png [nombre_salida] [-opciones]\n"
 #else
@@ -161,7 +161,7 @@
 #else
 
 #define TXT_PNG2MSX_Conversor   "    PNG  to  MSX  image  converter,  by  PipaGerardo.\n"
-#define TXT_PNG2MSX_Version     "    Version beta 7 ( 2017 )       pipagerardo@gmail.com\n"
+#define TXT_PNG2MSX_Version     "    Version beta 8 ( 2018 )       pipagerardo@gmail.com\n"
 #ifdef WINDOWS
 #define TXT_PNG2MSX_Opciones    "png2msx.exe source.png [output_name] [-options]\n"
 #else
